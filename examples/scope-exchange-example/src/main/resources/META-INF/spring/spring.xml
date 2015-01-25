@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		
+	<!-- Spring Context Configuration -->
+	<context:annotation-config/>
+	<context:component-scan base-package="com.jyore"/>
+	
+	<!-- Spring Scope Registration -->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="exchange"><bean class="com.jyore.spring.scope.exchange.ExchangeScope"/></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Camel Config -->
+	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
+    	<camel:contextScan/>
+    </camel:camelContext>
+    
+    <!-- Setup Event Bean -->
+    <bean id="exchange-scope-event" class="com.jyore.spring.scope.exchange.ExchangeScopeEventContext"/>
+    
+    <!-- ADDITIONAL BEANS ARE REGISTERED THROUGH ANNOTATION CONFIG -->
+</beans>
