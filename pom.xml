@@ -5,8 +5,8 @@
 >
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.jyore.spring.scope</groupId>
-	<artifactId>spring-scopes</artifactId>
+	<groupId>com.jyore.spring</groupId>
+	<artifactId>spring-scopes-parent</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -19,7 +19,7 @@
     </properties>
 
 	<modules>
-		<module>exchange-scope</module>
+		<module>spring-scopes</module>
 		<module>examples</module>
 	</modules>
  	
