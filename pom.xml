@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.jyore.spring.scope</groupId>
+	<artifactId>spring-scopes</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+    <properties>
+    	<felix.version>2.3.7</felix.version>
+    	<maven.builder.helper.version>1.5</maven.builder.helper.version>
+    	<slf4j.version>1.6.6</slf4j.version>
+    	<camel.version>2.12.0</camel.version>
+    	<spring.version>3.2.8.RELEASE</spring.version>
+    </properties>
+
+	<modules>
+		<module>exchange-scope</module>
+		<module>examples</module>
+	</modules>
+ 	
+ 	
+ 	<dependencyManagement>
+ 		<dependencies>
+ 			<dependency>
+ 				<groupId>org.slf4j</groupId>
+ 				<artifactId>slf4j-api</artifactId>
+ 				<version>${slf4j.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.apache.camel</groupId>
+ 				<artifactId>camel-core</artifactId>
+ 				<version>${camel.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.apache.camel</groupId>
+ 				<artifactId>camel-spring</artifactId>
+ 				<version>${camel.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-core</artifactId>
+ 				<version>${spring.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-beans</artifactId>
+ 				<version>${spring.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-aop</artifactId>
+ 				<version>${spring.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-context</artifactId>
+ 				<version>${spring.version}</version>
+ 			</dependency>
+ 			<dependency>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-context-support</artifactId>
+ 				<version>${spring.version}</version>
+ 			</dependency>
+ 		</dependencies>
+ 	</dependencyManagement>
+ 	
+ 	<build>
+ 		<pluginManagement>
+ 			<plugins>
+ 				<plugin>
+ 					<groupId>org.apache.felix</groupId>
+	 				<artifactId>maven-bundle-plugin</artifactId>
+ 					<version>${felix.version}</version>
+ 				</plugin>
+ 				<plugin>
+ 					<groupId>org.codehaus.mojo</groupId>
+	 				<artifactId>build-helper-maven-plugin</artifactId>
+ 					<version>${maven.builder.helper.version}</version>
+ 				</plugin>
+ 			</plugins>
+ 		</pluginManagement>
+ 	</build>
+</project>
