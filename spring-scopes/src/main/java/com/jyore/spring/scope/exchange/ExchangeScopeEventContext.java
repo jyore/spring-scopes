@@ -1,13 +1,11 @@
 package com.jyore.spring.scope.exchange;
 
-import java.util.EventObject;
-
-import org.apache.camel.management.event.ExchangeCompletedEvent;
-import org.apache.camel.management.event.ExchangeCreatedEvent;
-import org.apache.camel.support.EventNotifierSupport;
+import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/*
 public class ExchangeScopeEventContext extends EventNotifierSupport {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeScopeEventContext.class);
@@ -35,6 +33,26 @@ public class ExchangeScopeEventContext extends EventNotifierSupport {
 	
 	public static String getConversation() {
 		return conversation.get();
+	}
+	
+}
+*/
+
+
+public class ExchangeScopeEventContext {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeScopeEventContext.class);
+	//private static ThreadLocal<String> conversation = new ThreadLocal<String>();
+	private static String conversation;
+	
+	
+	public void process(Exchange exchange) {
+		LOGGER.info("INTERCEPTED EXCHANGE: " + exchange.getExchangeId() + " FROM: " + exchange.getFromEndpoint().getEndpointUri());
+		//conversation.set(exchange.getExchangeId());
+		conversation = exchange.getExchangeId();
+	}
+	
+	public static String getConversation() {
+		return conversation;
 	}
 	
 }
