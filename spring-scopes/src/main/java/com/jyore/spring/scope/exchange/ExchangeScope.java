@@ -1,35 +1,61 @@
 package com.jyore.spring.scope.exchange;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
+@SuppressWarnings("rawtypes")
 public class ExchangeScope implements Scope {
 
+	private static final Logger log = LoggerFactory.getLogger(ExchangeScope.class);
+	private static final String REFERENCE = "exchange";
+	private static final Map scope = new HashMap();
+	private static final ObjectFactory MAP_FACTORY = new ObjectFactory() {
+		public Object getObject() {
+			return new HashMap();
+		}
+	};
 	
 	
-	public Object get(String name, ObjectFactory<?> factory) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String getConversationId() {
-		// TODO Auto-generated method stub
-		return null;
+		String id =ExchangeContextHolder.getExchangeAttributes().getExchange().getExchangeId();
+		log.info("Scope Bound with Conversation from Exchange - {}",id);
+		return id;
 	}
-
-	public void registerDestructionCallback(String name, Runnable runnable) {
-		// TODO Auto-generated method stub
-
+	
+	public Object resolveContextualObject(String name) {
+		return REFERENCE.equals(name);
+	}
+	
+	public synchronized Object get(String name,  ObjectFactory factory) {
+		log.info("Retrieving bean {}",name);
+		Map beans = (Map) _get(scope,getConversationId(),MAP_FACTORY);
+		return _get(beans,name,factory);
 	}
 
 	public Object remove(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Removing bean {}",name);
+		Map beans = (Map) scope.get(name);
+		return (beans == null ? null : beans.remove(name));
 	}
 
-	public Object resolveContextualObject(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public void registerDestructionCallback(String name, Runnable callback) {
+		log.info("Registering destruction callback to bean {}",name);
+		ExchangeAttributes attributes = ExchangeContextHolder.getExchangeAttributes();
+		attributes.registerDestructionCallback(name, callback);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	private Object _get(Map map, String name, ObjectFactory factory) {
+		Object o = map.get(name);
+		if(o == null) {
+			o = factory.getObject();
+			map.put(name, o);
+		}
+		return o;
+	}
 }

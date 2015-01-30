@@ -6,7 +6,7 @@ import org.springframework.core.NamedThreadLocal;
 
 public class ExchangeContextHolder {
 
-	private static final ThreadLocal<ExchangeAttributes> attributeHolder = new NamedThreadLocal<ExchangeAttributes>("Exchange Attributes");
+	private static final ThreadLocal<ExchangeAttributes> attributeHolder = new NamedThreadLocal<ExchangeAttributes>("Exchange Context");
 	
 
 	public static void resetExchangeAttributes() {
@@ -30,6 +30,5 @@ public class ExchangeContextHolder {
 		
 		return attributes;
 	}
-	
 
 }

@@ -27,14 +27,10 @@
 	<!-- Camel Config -->
 	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
     	<camel:contextScan/>
-    	
-    	<camel:intercept>
-    		<camel:bean ref="exchange-scope-event" method="process"/>
-    	</camel:intercept>
     </camel:camelContext>
     
     <!-- Setup Event Bean -->
-    <bean id="exchange-scope-event" class="com.jyore.spring.scope.exchange.ExchangeScopeEventContext" scope="prototype"/>
+    <bean id="exchange-scope-event" class="com.jyore.spring.scope.exchange.ExchangeEventNotifier"/>
     
     <!-- ADDITIONAL BEANS ARE REGISTERED THROUGH ANNOTATION CONFIG -->
 </beans>

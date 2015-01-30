@@ -7,15 +7,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value="exchange",proxyMode=ScopedProxyMode.INTERFACES)
-public class ExchangeScopedStringImpl implements ExchangeScopedString {
+public class ExchangeScopedTestImpl implements ExchangeScopedTest {
 
-	private String value = null;
+	private Object internal = null;
 	
-	public String getValue() {
-		return value;
+	public Object get() {
+		return internal;
 	}
-	
-	public void setValue(String value) {
-		this.value = value;
+
+	public void set(Object o) {
+		internal = o;
 	}
+
 }
