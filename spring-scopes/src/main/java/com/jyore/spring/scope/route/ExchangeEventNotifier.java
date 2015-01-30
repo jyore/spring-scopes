@@ -16,7 +16,7 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 	
 	public void notify(EventObject event) throws Exception {
 		if(event instanceof ExchangeCreatedEvent) {
-			log.info("RECEIVED CREATE EVENT");
+			log.debug("RECEIVED CREATE EVENT");
 			ExchangeCreatedEvent ece = (ExchangeCreatedEvent) event;
 			
 			Exchange exchange = ece.getExchange();
@@ -28,7 +28,7 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 		}
 		
 		if(event instanceof ExchangeCompletedEvent) {
-			log.info("RECEIVED COMPLETE EVENT");
+			log.debug("RECEIVED COMPLETE EVENT");
 		}
 		
 	}
