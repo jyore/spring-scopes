@@ -1,15 +1,15 @@
 package com.jyore.spring.scope.exchange.example.route;
 
+import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jyore.spring.scope.exchange.example.processor.ValueChecker;
 import com.jyore.spring.scope.exchange.example.processor.ValueSetter;
-import com.jyore.spring.scope.exchange.support.ExchangeScopeAwareRouteBuilder;
 
 
-//@Component
-public class SimpleRoute extends ExchangeScopeAwareRouteBuilder {
+@Component
+public class SimpleRoute extends RouteBuilder {
 
 	@Autowired
 	private ValueSetter valueSetter;
@@ -19,9 +19,9 @@ public class SimpleRoute extends ExchangeScopeAwareRouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
-		super.configure();
 		from("timer://simple?fixedRate=true&period=5000")
 			.bean(valueSetter,"process")
+			.delay(1000)
 			.bean(valueChecker,"process")
 		;
 	}

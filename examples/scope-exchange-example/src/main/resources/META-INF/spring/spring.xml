@@ -30,7 +30,7 @@
     </camel:camelContext>
     
     <!-- Setup Event Bean -->
-    <bean id="exchange-scope-event" class="com.jyore.spring.scope.exchange.support.ExchangeScopeIntercept"/>
+    <bean id="exchange-scope-event" class="com.jyore.spring.scope.exchange.ExchangeEventNotifier"/>
     
     <!-- ADDITIONAL BEANS ARE REGISTERED THROUGH ANNOTATION CONFIG -->
 </beans>

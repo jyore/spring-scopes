@@ -3,7 +3,6 @@ package com.jyore.spring.scope.exchange;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectFactory;
@@ -12,6 +11,8 @@ import org.springframework.beans.factory.config.Scope;
 @SuppressWarnings("rawtypes")
 public class ExchangeScope implements Scope {
 
+	public static final String SCOPE_PROPERTY = "ExchangeScopeId";
+	
 	private static final Logger log = LoggerFactory.getLogger(ExchangeScope.class);
 	private static final String REFERENCE = "exchange";
 	private static final Map scope = new HashMap();
@@ -23,8 +24,8 @@ public class ExchangeScope implements Scope {
 	
 	
 	public String getConversationId() {
-		String id = ExchangeContextHolder.getExchangeAttributes().getExchange().getProperty(Exchange.CORRELATION_ID).toString();
-		log.info("Scope Bound with Conversation from Exchange w/ correlation id - {}",id);
+		String id = ExchangeContextHolder.getExchangeAttributes().getExchange().getProperty(SCOPE_PROPERTY).toString();
+		log.info("Scope Bound with Conversation from Exchange w/ scope id - {}",id);
 		return id;
 	}
 	
