@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange.example.beans;
+package com.jyore.spring.scope.route.example.beans;
 
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
@@ -13,7 +13,7 @@ public class InterceptInspector {
 	public void process(Exchange exchange) {
 		
 		log.info(
-				"INTERCEPT REPORT\n\n" +
+				"\nINTERCEPT REPORT\n\n" +
 		        "\t\tExchange Id: " + exchange.getExchangeId() + "\n" +
 				"\t\tRoute Id: " + exchange.getFromRouteId() + "\n" +
 		        "\t\tFrom Id:" + exchange.getFromEndpoint().getEndpointUri() + "\n" +

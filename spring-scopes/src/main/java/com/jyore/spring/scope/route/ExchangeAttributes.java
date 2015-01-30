@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange;
+package com.jyore.spring.scope.route;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.apache.camel.Exchange;
 
 public class ExchangeAttributes {
 
-	private static final String DESCTUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
+	private static final String DESCTRUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
 	private final Map<String,Runnable> destructionCallbacks = new HashMap<String,Runnable>();
 	private volatile Exchange exchange;
 	
@@ -21,7 +21,7 @@ public class ExchangeAttributes {
 	}
 	
 	public void registerDestructionCallback(String name, Runnable callback) {
-		destructionCallbacks.put(DESCTUCTION_CB_PREFIX + name, callback);
+		destructionCallbacks.put(DESCTRUCTION_CB_PREFIX + name, callback);
 	}
 
 }

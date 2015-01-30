@@ -15,7 +15,7 @@
 	</parent>
 	
 	<modules>
-		<module>scope-exchange-example</module>
+		<module>scope-route-example</module>
 	</modules>
 	
 </project>

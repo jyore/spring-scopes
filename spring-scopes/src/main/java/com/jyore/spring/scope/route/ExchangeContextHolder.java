@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange;
+package com.jyore.spring.scope.route;
 
 import org.springframework.core.NamedThreadLocal;
 
@@ -25,7 +25,7 @@ public class ExchangeContextHolder {
 		ExchangeAttributes attributes = attributeHolder.get();
 		
 		if(attributes == null) {
-			throw new IllegalStateException("No thread-bound exchange found - >>>");
+			throw new IllegalStateException("No thread-bound exchange found");
 		}
 		
 		return attributes;

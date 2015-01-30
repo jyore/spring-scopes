@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange.example.beans;
+package com.jyore.spring.scope.route.example.beans;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Scope(value="exchange",proxyMode=ScopedProxyMode.INTERFACES)
-public class ExchangeScopedTestImpl implements ExchangeScopedTest {
+@Scope(value="route",proxyMode=ScopedProxyMode.INTERFACES)
+public class RouteScopedTestImpl implements RouteScopedTest {
 
 	private Object internal = null;
 	

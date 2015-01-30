@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange.example.processor;
+package com.jyore.spring.scope.route.example.processor;
 
 import org.apache.camel.Exchange;
 import org.springframework.stereotype.Component;

@@ -1,11 +1,11 @@
-package com.jyore.spring.scope.exchange.example.route;
+package com.jyore.spring.scope.route.example.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.jyore.spring.scope.exchange.example.processor.ValueChecker;
-import com.jyore.spring.scope.exchange.example.processor.ValueSetter;
+import com.jyore.spring.scope.route.example.processor.ValueChecker;
+import com.jyore.spring.scope.route.example.processor.ValueSetter;
 
 
 @Component

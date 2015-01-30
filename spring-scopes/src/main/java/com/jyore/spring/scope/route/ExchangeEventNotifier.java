@@ -1,4 +1,4 @@
-package com.jyore.spring.scope.exchange;
+package com.jyore.spring.scope.route;
 
 import java.util.EventObject;
 import java.util.UUID;
@@ -20,8 +20,8 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 			ExchangeCreatedEvent ece = (ExchangeCreatedEvent) event;
 			
 			Exchange exchange = ece.getExchange();
-			if(exchange.getProperty(ExchangeScope.SCOPE_PROPERTY) == null) {
-				exchange.setProperty(ExchangeScope.SCOPE_PROPERTY, UUID.randomUUID().toString());
+			if(exchange.getProperty(RouteScope.SCOPE_PROPERTY) == null) {
+				exchange.setProperty(RouteScope.SCOPE_PROPERTY, UUID.randomUUID().toString());
 			}
 			
 			ExchangeContextHolder.setExchangeAttributes(new ExchangeAttributes(exchange));
