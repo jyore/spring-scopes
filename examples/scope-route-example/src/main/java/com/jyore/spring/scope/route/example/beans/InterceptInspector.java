@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.jyore.spring.scope.route.RouteScope;
+
 @Component(value="InterceptInspector")
 public class InterceptInspector {
 
@@ -18,7 +20,7 @@ public class InterceptInspector {
 				"\t\tRoute Id: " + exchange.getFromRouteId() + "\n" +
 		        "\t\tFrom Id:" + exchange.getFromEndpoint().getEndpointUri() + "\n" +
 		        "\t\tCorrelation Id: " + exchange.getProperty(Exchange.CORRELATION_ID) + "\n" +
-		        "\t\tScope Id: " + exchange.getProperty("ScopeId") + "\n" +
+		        "\t\tScope Id: " + exchange.getProperty(RouteScope.SCOPE_PROPERTY) + "\n" +
 		        "END REPORT"
 		);
 	}

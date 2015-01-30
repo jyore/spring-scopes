@@ -21,7 +21,7 @@ import org.springframework.beans.factory.config.Scope;
 @SuppressWarnings("rawtypes")
 public class RouteScope implements Scope {
 
-	public static final String SCOPE_PROPERTY = "ExchangeScopeId";
+	public static final String SCOPE_PROPERTY = "RouteScopeId";
 	
 	private static final Logger log = LoggerFactory.getLogger(RouteScope.class);
 	private static final String REFERENCE = "route";
