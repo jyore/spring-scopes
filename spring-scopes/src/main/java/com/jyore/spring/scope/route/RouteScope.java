@@ -11,7 +11,8 @@ import org.springframework.beans.factory.config.Scope;
 
 /**
  *  
- * 
+ * Scope a bean by a route's execution. Beans are bound by the initial exchange 
+ * and maintained even through splits and aggregations.
  * 
  * {@see Scope}
  * 

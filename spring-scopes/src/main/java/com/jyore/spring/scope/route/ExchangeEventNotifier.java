@@ -10,6 +10,15 @@ import org.apache.camel.support.EventNotifierSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/**
+ * Applies the exchange to the scope
+ * 
+ * @see EventNotifierSupport
+ * 
+ * @author jyore
+ * @version 1.0
+ */
 public class ExchangeEventNotifier extends EventNotifierSupport {
 
 	private static final Logger log = LoggerFactory.getLogger(ExchangeEventNotifier.class);
@@ -49,7 +58,7 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 		setIgnoreExchangeEvents(false);
 		setIgnoreExchangeFailedEvents(true);
 		setIgnoreExchangeRedeliveryEvents(true);
-		setIgnoreExchangeSendingEvents(false);
+		setIgnoreExchangeSendingEvents(true);
 		setIgnoreExchangeSentEvents(true);
 		setIgnoreRouteEvents(true);
 		setIgnoreServiceEvents(true);
