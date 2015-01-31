@@ -63,5 +63,10 @@
 			<artifactId>spring-scopes</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jetty</artifactId>
+			<type>bundle</type>
+		</dependency>
 	</dependencies>
 </project>

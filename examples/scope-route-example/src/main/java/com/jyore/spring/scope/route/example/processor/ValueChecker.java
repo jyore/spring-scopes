@@ -19,5 +19,6 @@ public class ValueChecker {
 	
 	public void process(Exchange exchange) {
 		log.info("Bean Value is {}", (Integer) bean.get());
+		exchange.getIn().setBody(bean.get());
 	}
 }
