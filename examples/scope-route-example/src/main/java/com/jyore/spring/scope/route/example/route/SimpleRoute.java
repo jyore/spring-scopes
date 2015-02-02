@@ -19,7 +19,7 @@ public class SimpleRoute extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
-		from("timer://simple?fixedRate=true&period=5000")
+		from("timer://simple?fixedRate=true&period=6000")
 			.bean(valueSetter,"process")
 			.delay(1000)
 			.bean(valueChecker,"process")

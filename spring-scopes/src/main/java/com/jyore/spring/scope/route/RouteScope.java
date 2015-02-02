@@ -46,14 +46,14 @@ public class RouteScope implements Scope {
 	
 	public synchronized Object get(String name,  ObjectFactory factory) {
 		log.debug("Retrieving bean {}",name);
-		Map beans = (Map) _get(scope,getConversationId(),MAP_FACTORY);
-		return _get(beans,name,factory);
+		Map beans = (Map) _get(scope,getConversationId(),MAP_FACTORY,false);
+		return _get(beans,name,factory,true);
 	}
 
 	public Object remove(String name) {
 		log.debug("Removing bean {}",name);
-		Map beans = (Map) scope.get(name);
-		return (beans == null ? null : beans.remove(name));
+		Map beans = (Map) _get(scope,getConversationId(),MAP_FACTORY,false);
+		return beans.remove(name);
 	}
 
 	public void registerDestructionCallback(String name, Runnable callback) {
@@ -63,11 +63,15 @@ public class RouteScope implements Scope {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private Object _get(Map map, String name, ObjectFactory factory) {
+	private Object _get(Map map, String name, ObjectFactory factory, boolean registerCb) {
 		Object o = map.get(name);
 		if(o == null) {
 			o = factory.getObject();
 			map.put(name, o);
+			
+			if(registerCb) {
+				registerDestructionCallback(name, new RouteScopeCleanup(this, name));
+			}
 		}
 		return o;
 	}

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Holds the exchange and associated attributes and callbacks
@@ -12,8 +14,8 @@ import org.apache.camel.Exchange;
  * @version 1.0
  */
 public class ExchangeAttributes {
-
-	private static final String DESCTRUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
+	private static final Logger log = LoggerFactory.getLogger(ExchangeAttributes.class);
+	private static final String DESTRUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
 	private final Map<String,Runnable> destructionCallbacks = new HashMap<String,Runnable>();
 	private volatile Exchange exchange;
 	
@@ -42,7 +44,22 @@ public class ExchangeAttributes {
 	 * @param callback A {link Runnable} to call as a callback
 	 */
 	public void registerDestructionCallback(String name, Runnable callback) {
-		destructionCallbacks.put(DESCTRUCTION_CB_PREFIX + name, callback);
+		synchronized (this.destructionCallbacks) {
+			destructionCallbacks.put(DESTRUCTION_CB_PREFIX + name, callback);
+		}
+	}
+	
+	/**
+	 * Execute the registered destruction callbacks
+	 */
+	public void executeDesctructionCallbacks() {
+		synchronized (this.destructionCallbacks) {
+			for(String cb : destructionCallbacks.keySet()) {
+				log.debug("Executing destruction callback: " + cb);
+				destructionCallbacks.get(cb).run();
+			}
+			destructionCallbacks.clear();
+		}
 	}
 
 }

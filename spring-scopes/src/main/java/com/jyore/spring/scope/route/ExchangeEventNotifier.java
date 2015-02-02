@@ -38,6 +38,7 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 		
 		if(event instanceof ExchangeCompletedEvent) {
 			log.debug("RECEIVED COMPLETE EVENT");
+			ExchangeContextHolder.getExchangeAttributes().executeDesctructionCallbacks();
 			ExchangeContextHolder.resetExchangeAttributes();
 		}
 		
