@@ -7,13 +7,16 @@ import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jyore.spring.scope.ScopeContext;
+
 /**
  * Holds the exchange and associated attributes and callbacks
  * 
+ * @see ScopeContext
  * @author jyore
  * @version 1.0
  */
-public class ExchangeAttributes {
+public class ExchangeAttributes implements ScopeContext {
 	private static final Logger log = LoggerFactory.getLogger(ExchangeAttributes.class);
 	private static final String DESTRUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
 	private final Map<String,Runnable> destructionCallbacks = new HashMap<String,Runnable>();
@@ -28,30 +31,16 @@ public class ExchangeAttributes {
 		this.exchange = exchange;
 	}
 	
-	/**
-	 * Retrieve the stored {@link Exchange}
-	 * 
-	 * @return the {@link Exchange}
-	 */
-	public Exchange getExchange() {
+	public Object get() {
 		return exchange;
 	}
-	
-	/**
-	 * Register a destruction callback
-	 * 
-	 * @param name The name of the callback
-	 * @param callback A {link Runnable} to call as a callback
-	 */
+
 	public void registerDestructionCallback(String name, Runnable callback) {
 		synchronized (this.destructionCallbacks) {
 			destructionCallbacks.put(DESTRUCTION_CB_PREFIX + name, callback);
 		}
 	}
 	
-	/**
-	 * Execute the registered destruction callbacks
-	 */
 	public void executeDesctructionCallbacks() {
 		synchronized (this.destructionCallbacks) {
 			for(String cb : destructionCallbacks.keySet()) {

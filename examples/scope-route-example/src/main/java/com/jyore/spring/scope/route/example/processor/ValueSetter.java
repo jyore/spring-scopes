@@ -21,6 +21,13 @@ public class ValueSetter {
 	
 	public void process(Exchange exchange) {
 		log.info("Setting bean to {}",counter);
-		bean.set(counter++);
+		bean.set(safeIncrement());
+	}
+	
+	//Since we're going to be using a static variable here
+	//that is modified from multiple threads, we need to use
+	//the sync block to be safe
+	private synchronized int safeIncrement() {
+		return counter++;
 	}
 }

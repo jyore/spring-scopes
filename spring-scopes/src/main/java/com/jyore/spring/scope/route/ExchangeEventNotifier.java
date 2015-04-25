@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
  * @see EventNotifierSupport
  * 
  * @author jyore
- * @version 1.0
  */
 public class ExchangeEventNotifier extends EventNotifierSupport {
 
@@ -33,13 +32,13 @@ public class ExchangeEventNotifier extends EventNotifierSupport {
 				exchange.setProperty(RouteScope.SCOPE_PROPERTY, UUID.randomUUID().toString());
 			}
 			
-			ExchangeContextHolder.setExchangeAttributes(new ExchangeAttributes(exchange));
+			ExchangeContextHolder.instance().setContext(new ExchangeAttributes(exchange));
 		}
 		
 		if(event instanceof ExchangeCompletedEvent) {
 			log.debug("RECEIVED COMPLETE EVENT");
-			ExchangeContextHolder.getExchangeAttributes().executeDesctructionCallbacks();
-			ExchangeContextHolder.resetExchangeAttributes();
+			ExchangeContextHolder.instance().getContext().executeDesctructionCallbacks();
+			ExchangeContextHolder.instance().resetContext();
 		}
 		
 	}

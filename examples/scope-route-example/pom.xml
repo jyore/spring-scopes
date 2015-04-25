@@ -5,13 +5,16 @@
 >
 
 	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.jyore.spring</groupId>
 	<artifactId>scope-route-example</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	
 	<parent>
 		<groupId>com.jyore.spring</groupId>
 		<artifactId>spring-scopes-examples</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 	
 	<build>
@@ -61,7 +64,7 @@
 		<dependency>
 			<groupId>com.jyore.spring</groupId>
 			<artifactId>spring-scopes</artifactId>
-			<version>${project.version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -69,4 +72,5 @@
 			<type>bundle</type>
 		</dependency>
 	</dependencies>
+	
 </project>
