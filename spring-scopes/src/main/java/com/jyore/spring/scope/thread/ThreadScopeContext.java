@@ -8,6 +8,13 @@ import org.slf4j.LoggerFactory;
 
 import com.jyore.spring.scope.ScopeContext;
 
+
+/**
+ * Contextual information to identify a thread for scoping
+ * 
+ * @see ScopeContext
+ * @author jyore
+ */
 public class ThreadScopeContext implements ScopeContext {
 
 	private static final Logger log = LoggerFactory.getLogger(ThreadScopeContext.class);

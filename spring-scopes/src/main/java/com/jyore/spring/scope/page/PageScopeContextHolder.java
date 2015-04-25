@@ -18,7 +18,11 @@ public class PageScopeContextHolder implements ScopeContextHolder {
 	
 	private PageScopeContextHolder() {}
 	
-	
+	/**
+	 * Retrieve the instance to the singleton
+	 * 
+	 * @return The {@link PageScopeContextHolder} singleton instance
+	 */
 	public static PageScopeContextHolder instance() {
 		return instance;
 	}

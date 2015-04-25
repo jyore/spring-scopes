@@ -5,6 +5,7 @@ Available Scopes
 * Route Scope - Scope providing per-route-execution scoping
 * Page Scope - Scope providing per-page scoping
 * Thread Scope - Scope providing per-thread scoping
+* Inherited Thread Scope - Scope providing per-thread-and-child-thread scoping
 
 
 In order to use custom scopes you must register the scope with Spring.  This can be done via Java Config or XML Config as shown below. In both examples, the `scope-name` string should be replaced with the string you will use to reference that scope and the `CustomScope` class should be the class of the scope you are adding.
@@ -57,3 +58,7 @@ In order to use Page Scope, you must register the scope with Spring's CustomScop
 
 ## Thread Scope
 The thread scope simply scopes beans per-thread.  With this scope, brean creation is done per thread. **NOTE**: Children threads will get new beans
+
+
+## Inherited Thread Scope
+The inherited thread scope simply scopes beans per-thread.  With this scope, brean creation is done per thread. If a thread spawns children threads, they will also be covered in the scope

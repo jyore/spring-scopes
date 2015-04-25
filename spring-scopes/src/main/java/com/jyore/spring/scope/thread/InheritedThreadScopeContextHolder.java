@@ -1,9 +1,8 @@
 package com.jyore.spring.scope.thread;
 
-import org.springframework.core.NamedThreadLocal;
-
 import com.jyore.spring.scope.ScopeContext;
 import com.jyore.spring.scope.ScopeContextHolder;
+
 
 /**
  * Holds {@link ThreadScopeContext} and provides access to them
@@ -11,21 +10,20 @@ import com.jyore.spring.scope.ScopeContextHolder;
  * @see ScopeContextHolder
  * @author jyore
  */
-public class ThreadScopeContextHolder implements ScopeContextHolder {
+public class InheritedThreadScopeContextHolder implements ScopeContextHolder {
 
-	private static final ThreadScopeContextHolder instance = new ThreadScopeContextHolder();
-	private static final ThreadLocal<ThreadScopeContext> holder = new NamedThreadLocal<ThreadScopeContext>("Thread Context");
+	private static final InheritedThreadScopeContextHolder instance = new InheritedThreadScopeContextHolder();
+	private static final InheritableThreadLocal<ScopeContext> holder = new InheritableThreadLocal<ScopeContext>();
 	
 
-	private ThreadScopeContextHolder() {}
-	
+	private InheritedThreadScopeContextHolder() {}
 	
 	/**
 	 * Retrieve the instance to the singleton
 	 * 
-	 * @return The {@link ThreadScopeContextHolder} singleton instance
+	 * @return The {@link InheritedThreadScopeContextHolder} singleton instance
 	 */
-	public static ThreadScopeContextHolder instance() {
+	public static InheritedThreadScopeContextHolder instance() {
 		return instance;
 	}
 	
@@ -36,7 +34,7 @@ public class ThreadScopeContextHolder implements ScopeContextHolder {
 		
 		if(ctx == null) {
 			ctx = new ThreadScopeContext();
-			holder.set((ThreadScopeContext) ctx);
+			holder.set(ctx);
 		}
 		
 		return ctx;
@@ -47,7 +45,7 @@ public class ThreadScopeContextHolder implements ScopeContextHolder {
 		if(context == null) {
 			resetContext();
 		} else {
-			holder.set((ThreadScopeContext) context);
+			holder.set(context);
 		}
 	}
 
