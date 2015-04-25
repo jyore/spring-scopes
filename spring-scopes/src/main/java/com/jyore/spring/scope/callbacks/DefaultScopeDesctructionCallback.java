@@ -1,6 +1,8 @@
-package com.jyore.spring.scope;
+package com.jyore.spring.scope.callbacks;
 
 import org.springframework.beans.factory.config.Scope;
+
+import com.jyore.spring.scope.AbstractScopeDestructionCallback;
 
 
 /**

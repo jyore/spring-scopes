@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
+import com.jyore.spring.scope.callbacks.DefaultScopeDesctructionCallback;
+
 /**
  * Abstract implementation of an {@link Scope}
  * 
