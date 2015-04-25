@@ -12,8 +12,9 @@ public interface ScopeContextHolder {
 	 * Get the stored context
 	 * 
 	 * @return The {@link ScopeContext} object stored in the holder
+	 * @throws IllegalStateException When the context could not be accessed
 	 */
-	public ScopeContext getContext();
+	public ScopeContext getContext() throws IllegalStateException;
 	
 	/**
 	 * Set the {@link ScopeContext} to store

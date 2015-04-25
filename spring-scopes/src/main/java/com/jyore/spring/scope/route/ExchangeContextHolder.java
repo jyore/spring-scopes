@@ -24,7 +24,7 @@ public class ExchangeContextHolder implements ScopeContextHolder {
 	}
 	
 	@Override
-	public ScopeContext getContext() {
+	public ScopeContext getContext() throws IllegalStateException {
 		ExchangeAttributes attributes = attributeHolder.get();
 		
 		if(attributes == null) {

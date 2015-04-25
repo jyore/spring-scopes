@@ -1,45 +1,48 @@
-package com.jyore.spring.scope.route;
+package com.jyore.spring.scope.page;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jyore.spring.scope.ScopeContext;
 
+
 /**
- * Holds the exchange and associated attributes and callbacks
+ * Holds the page name
  * 
  * @see ScopeContext
  * @author jyore
  */
-public class ExchangeAttributes implements ScopeContext {
-	private static final Logger log = LoggerFactory.getLogger(ExchangeAttributes.class);
-	private static final String DESTRUCTION_CB_PREFIX = ExchangeAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
+public class PageScopeContext implements ScopeContext {
+	private static final Logger log = LoggerFactory.getLogger(PageScopeContext.class);
+	private static final String DESTRUCTION_CB_PREFIX = PageScopeContext.class.getName() + ".DESTRUCTION_CALLBACK.";
 	private final Map<String,Runnable> destructionCallbacks = new HashMap<String,Runnable>();
-	private volatile Exchange exchange;
+	private volatile String page;
 	
 	/**
-	 * Create a new instance from an  @{link Exchange}
+	 * Create an instance around a page
 	 * 
-	 * @param exchange
+	 * @param page The name of the page to bind to
 	 */
-	public ExchangeAttributes(Exchange exchange) {
-		this.exchange = exchange;
+	public PageScopeContext(String page) {
+		this.page = page;
 	}
 	
+	@Override
 	public Object get() {
-		return exchange;
+		return page;
 	}
 
+	@Override
 	public void registerDestructionCallback(String name, Runnable callback) {
 		synchronized (this.destructionCallbacks) {
 			destructionCallbacks.put(DESTRUCTION_CB_PREFIX + name, callback);
 		}
 	}
-	
+
+	@Override
 	public void executeDesctructionCallbacks() {
 		synchronized (this.destructionCallbacks) {
 			for(String cb : destructionCallbacks.keySet()) {
