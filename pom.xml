@@ -24,6 +24,18 @@
 		<module>examples</module>
 	</modules>
  	
+    <distributionManagement>
+		<repository>
+			<id>deployment</id>
+			<name>Releases</name>
+			<url>http://repository.jyore.com/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>deployment</id>
+			<name>Snapshots</name>
+			<url>http://repository.jyore.com/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
  	
  	<dependencyManagement>
  		<dependencies>
